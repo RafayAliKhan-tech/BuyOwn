@@ -1,0 +1,690 @@
+[
+  {
+    "id": 1,
+    "brand": "Dell",
+    "model": "Inspiron 15 3530",
+    "category": "Student",
+    "price": 185000,
+    "screenSize": "15.6 inch",
+    "ram": "8GB",
+    "storage": "512GB SSD",
+    "processor": "Intel Core i5 13th Gen",
+    "gpu": "Intel Iris Xe",
+    "weight": "1.65 kg",
+    "dimensions": "358 x 235 x 19 mm",
+    "colors": [
+      { "name": "Black", "image": "dell-inspiron-front" }
+    ],
+    "gallery": [
+      "dell-inspiron-front",
+      "dell-inspiron-side"
+    ],
+    "description": "Reliable everyday performance laptop with smooth multitasking. Perfect for students and office users.",
+    "rating": 4.3,
+    "reviews": [
+      { "user": "Ali R.", "comment": "Great for daily tasks.", "rating": 4 },
+      { "user": "Sara K.", "comment": "Smooth and reliable.", "rating": 4.5 }
+    ]
+  },
+  {
+    "id": 2,
+    "brand": "Dell",
+    "model": "XPS 13 9315",
+    "category": "Business",
+    "price": 325000,
+    "screenSize": "13.4 inch",
+    "ram": "16GB",
+    "storage": "512GB SSD",
+    "processor": "Intel Core i7 12th Gen",
+    "gpu": "Intel Iris Xe",
+    "weight": "1.17 kg",
+    "dimensions": "295 x 199 x 14.8 mm",
+    "colors": [
+      { "name": "Platinum Silver", "image": "dell-xps-silver" },
+      { "name": "Sky Blue", "image": "dell-xps-white" }
+    ],
+    "gallery": [
+      "dell-xps-silver"
+    ],
+    "description": "Ultra-slim premium laptop with stunning InfinityEdge display. Ideal for professionals and creators.",
+    "rating": 4.7,
+    "reviews": [
+      { "user": "Hina S.", "comment": "Premium and fast.", "rating": 5 },
+      { "user": "Bilal K.", "comment": "Perfect for work and travel.", "rating": 4.5 }
+    ]
+  },
+  {
+    "id": 3,
+    "brand": "Dell",
+    "model": "G15 5530",
+    "category": "Gaming",
+    "price": 410000,
+    "screenSize": "15.6 inch",
+    "ram": "16GB",
+    "storage": "1TB SSD",
+    "processor": "Intel Core i7 13th Gen",
+    "gpu": "NVIDIA RTX 4060",
+    "weight": "2.65 kg",
+    "dimensions": "357 x 272 x 25 mm",
+    "colors": [
+      { "name": "Dark Shadow Gray", "image": "dell-g15" }
+    ],
+    "gallery": [
+      "dell-g15"
+    ],
+    "description": "High-performance gaming laptop with powerful RTX graphics. Designed for smooth AAA gaming experience.",
+    "rating": 4.8,
+    "reviews": [
+      { "user": "Ali M.", "comment": "Runs all games smoothly.", "rating": 5 },
+      { "user": "Sara N.", "comment": "Powerful GPU and cooling.", "rating": 4.5 }
+    ]
+  },
+  {
+    "id": 4,
+    "brand": "Dell",
+    "model": "Latitude 7455",
+    "category": "Business",
+    "price": 295000,
+    "screenSize": "14 inch",
+    "ram": "16GB",
+    "storage": "512GB SSD",
+    "processor": "Intel Core i5 13th Gen",
+    "gpu": "Intel Iris Xe",
+    "weight": "1.39 kg",
+    "dimensions": "321 x 212 x 19 mm",
+    "colors": [
+      { "name": "Titan Gray", "image": "dell-latitude" }
+    ],
+    "gallery": [
+      "dell-latitude"
+    ],
+    "description": "Business-class laptop with strong security features. Lightweight design for corporate professionals.",
+    "rating": 4.6,
+    "reviews": [
+      { "user": "Haris L.", "comment": "Great for office work.", "rating": 5 },
+      { "user": "Maya T.", "comment": "Secure and fast.", "rating": 4.2 }
+    ]
+  },
+  {
+    "id": 5,
+    "brand": "Dell",
+    "model": "Alienware m16",
+    "category": "Gaming",
+    "price": 650000,
+    "screenSize": "16 inch",
+    "ram": "32GB",
+    "storage": "1TB SSD",
+    "processor": "Intel Core i9 13th Gen",
+    "gpu": "NVIDIA RTX 4070",
+    "weight": "3.2 kg",
+    "dimensions": "368 x 289 x 26 mm",
+    "colors": [
+      { "name": "Dark Metallic Moon", "image": "dell-alienware" }
+    ],
+    "gallery": [
+      "dell-alienware"
+    ],
+    "description": "Premium gaming beast with advanced cooling system. Built for extreme performance and esports gaming.",
+    "rating": 4.9,
+    "reviews": [
+      { "user": "Omar A.", "comment": "Extreme gaming performance.", "rating": 5 },
+      { "user": "Zara S.", "comment": "Premium build and cooling.", "rating": 4.8 }
+    ]
+  },
+  {
+    "id": 6,
+    "brand": "HP",
+    "model": "Pavilion 15",
+    "category": "Student",
+    "price": 175000,
+    "screenSize": "15.6 inch",
+    "ram": "8GB",
+    "storage": "512GB SSD",
+    "processor": "Intel Core i5 12th Gen",
+    "gpu": "Intel Iris Xe",
+    "weight": "1.75 kg",
+    "dimensions": "360 x 234 x 18 mm",
+    "colors": [
+      { "name": "Natural Silver", "image": "hp-pavilion-1" },
+      { "name": "Fog Blue", "image": "hp-pavilion-2" }
+    ],
+    "gallery": [
+      "hp-pavilion-1",
+      "hp-pavilion-2",
+      "hp-pavilion-3",
+      "hp-pavilion-4"
+    ],
+    "description": "Stylish everyday laptop with solid performance. Great choice for students and home use.",
+    "rating": 4.2,
+    "reviews": [
+      { "user": "Ali R.", "comment": "Good for study and home use.", "rating": 4 },
+      { "user": "Sara F.", "comment": "Nice color options.", "rating": 4.5 }
+    ]
+  },
+  {
+    "id": 7,
+    "brand": "HP",
+    "model": "Envy x360 14",
+    "category": "Student",
+    "price": 290000,
+    "screenSize": "14 inch",
+    "ram": "16GB",
+    "storage": "512GB SSD",
+    "processor": "AMD Ryzen 7",
+    "gpu": "Radeon Graphics",
+    "weight": "1.51 kg",
+    "dimensions": "322 x 210 x 18 mm",
+    "colors": [
+      { "name": "Nightfall Black", "image": "hp-envy-1" }
+    ],
+    "gallery": [
+      "hp-envy-1",
+      "hp-envy-2",  
+      "hp-envy-3",
+      "hp-envy-4"
+    ],
+    "description": "Convertible 2-in-1 laptop with touch display. Perfect for creativity and productivity.",
+    "rating": 4.5,
+    "reviews": [
+      { "user": "Hina R.", "comment": "Touchscreen is very responsive.", "rating": 4.5 },
+      { "user": "Bilal T.", "comment": "Lightweight and versatile.", "rating": 4.5 }
+    ]
+  },
+  {
+    "id": 8,
+    "brand": "HP",
+    "model": "Omen 16",
+    "category": "Gaming",
+    "price": 420000,
+    "screenSize": "16.1 inch",
+    "ram": "16GB",
+    "storage": "1TB SSD",
+    "processor": "Intel Core i7 13th Gen",
+    "gpu": "NVIDIA RTX 4060",
+    "weight": "2.4 kg",
+    "dimensions": "369 x 248 x 23 mm",
+    "colors": [
+      { "name": "Shadow Black", "image": "hp-omen-1" }
+    ],
+    "gallery": [
+      "hp-omen-1",
+      "hp-omen-2",
+      "hp-omen-3",
+      "hp-omen-4"
+    ],
+    "description": "Powerful gaming laptop with high refresh rate display. Smooth gameplay with advanced cooling.",
+    "rating": 4.7,
+    "reviews": [
+      { "user": "Ali M.", "comment": "Great for high-end gaming.", "rating": 5 },
+      { "user": "Sara K.", "comment": "Cooling works well.", "rating": 4.5 }
+    ]
+  },
+  {
+    "id": 9,
+    "brand": "HP",
+    "model": "EliteBook 840 G10",
+    "category": "Business",
+    "price": 350000,
+    "screenSize": "14 inch",
+    "ram": "16GB",
+    "storage": "512GB SSD",
+    "processor": "Intel Core i7 13th Gen",
+    "gpu": "Intel Iris Xe",
+    "weight": "1.36 kg",
+    "dimensions": "315 x 225 x 19 mm",
+    "colors": [
+      { "name": "Silver", "image": "hp-elitebook-1" }
+    ],
+    "gallery": [
+      "hp-elitebook-1",
+      "hp-elitebook-2"
+    ],
+    "description": "Premium business laptop with enhanced security features. Lightweight and durable design.",
+    "rating": 4.6,
+    "reviews": [
+      { "user": "Haris L.", "comment": "Perfect for office use.", "rating": 5 },
+      { "user": "Maya R.", "comment": "Secure and fast.", "rating": 4.2 }
+    ]
+  },
+  {
+    "id": 10,
+    "brand": "HP",
+    "model": "Victus 15",
+    "category": "Gaming",
+    "price": 260000,
+    "screenSize": "15.6 inch",
+    "ram": "16GB",
+    "storage": "512GB SSD",
+    "processor": "AMD Ryzen 5",
+    "gpu": "NVIDIA GTX 1650",
+    "weight": "2.3 kg",
+    "dimensions": "357 x 255 x 23 mm",
+    "colors": [
+      { "name": "Performance Blue", "image": "hp-victus-1" }
+    ],
+    "gallery": [
+      "hp-victus-1",
+      "hp-victus-2",
+      "hp-victus-3",
+      "hp-victus-4"
+    ],
+    "description": "Affordable gaming laptop with solid graphics performance. Ideal for mid-level gamers.",
+    "rating": 4.4,
+    "reviews": [
+      { "user": "Omar F.", "comment": "Good mid-range gaming laptop.", "rating": 4 },
+      { "user": "Zara M.", "comment": "Decent GPU performance.", "rating": 4.5 }
+    ]
+  },
+  {
+    "id": 11,
+    "brand": "Lenovo",
+    "model": "IdeaPad 3 15",
+    "category": "Student",
+    "price": 150000,
+    "screenSize": "15.6 inch",
+    "ram": "8GB",
+    "storage": "512GB SSD",
+    "processor": "Intel Core i5 12th Gen",
+    "gpu": "Intel UHD Graphics",
+    "weight": "1.7 kg",
+    "dimensions": "359 x 236 x 19 mm",
+    "colors": [
+      { "name": "Arctic Grey", "image": "lenovo-ideapad-1" }
+    ],
+    "gallery": [
+      "lenovo-ideapad-1",
+      "lenovo-ideapad-2",
+      "lenovo-ideapad-3"
+    ],
+    "description": "Budget-friendly laptop for daily productivity tasks. Smooth performance for students.",
+    "rating": 4.1,
+    "reviews": [
+      { "user": "Ali K.", "comment": "Good for study.", "rating": 4 },
+      { "user": "Sara L.", "comment": "Value for money.", "rating": 4.2 }
+    ]
+  },
+  {
+    "id": 12,
+    "brand": "Lenovo",
+    "model": "Slim 3 14",
+    "category": "Business",
+    "price": 270000,
+    "screenSize": "14 inch",
+    "ram": "16GB",
+    "storage": "512GB SSD",
+    "processor": "Intel Core i7 13th Gen",
+    "gpu": "Intel Iris Xe",
+    "weight": "1.59 kg",
+    "dimensions": "324 x 220 x 18 mm",
+    "colors": [
+      { "name": "Grey", "image": "lenovo-slim-1" }
+    ],
+    "gallery": [
+      "lenovo-slim-1"
+    ],
+    "description": "Durable business laptop with sleek design. Excellent keyboard and security features.",
+    "rating": 4.6,
+    "reviews": [
+      { "user": "Haris L.", "comment": "Very reliable business laptop.", "rating": 4.5 },
+      { "user": "Maya S.", "comment": "Keyboard and design are excellent.", "rating": 4.7 }
+    ]
+  },
+  {
+    "id": 13,
+    "brand": "Lenovo",
+    "model": "Legion 5 Pro",
+    "category": "Gaming",
+    "price": 480000,
+    "screenSize": "16 inch",
+    "ram": "32GB",
+    "storage": "1TB SSD",
+    "processor": "AMD Ryzen 7",
+    "gpu": "NVIDIA RTX 4070",
+    "weight": "2.49 kg",
+    "dimensions": "356 x 260 x 22 mm",
+    "colors": [
+      { "name": "Storm Grey", "image": "lenovo-legion-1" }
+    ],
+    "gallery": [
+      "lenovo-legion-1"
+    ],
+    "description": "High-end gaming laptop with powerful RTX graphics. Built for competitive and AAA gaming.",
+    "rating": 4.9,
+    "reviews": [
+      { "user": "Omar A.", "comment": "Amazing gaming performance.", "rating": 5 },
+      { "user": "Zara S.", "comment": "Perfect for esports.", "rating": 4.8 }
+    ]
+  },
+  {
+    "id": 14,
+    "brand": "Lenovo",
+    "model": "Yoga 7 14",
+    "category": "Student",
+    "price": 300000,
+    "screenSize": "14 inch",
+    "ram": "16GB",
+    "storage": "1TB SSD",
+    "processor": "AMD Ryzen 7",
+    "gpu": "Radeon Graphics",
+    "weight": "1.45 kg",
+    "dimensions": "317 x 222 x 17 mm",
+    "colors": [
+      { "name": "Slate Grey", "image": "lenovo-yoga-1" }
+    ],
+    "gallery": [
+      "lenovo-yoga-1",
+      "lenovo-yoga-2"
+    ],
+    "description": "Convertible touchscreen laptop with premium build quality. Perfect for creative professionals.",
+    "rating": 4.5,
+    "reviews": [
+      { "user": "Hina S.", "comment": "Lightweight and premium feel.", "rating": 4.5 },
+      { "user": "Bilal K.", "comment": "Great for creativity.", "rating": 4.5 }
+    ]
+  },
+  {
+    "id": 15,
+    "brand": "Lenovo",
+    "model": "LOQ 15",
+    "category": "Gaming",
+    "price": 310000,
+    "screenSize": "15.6 inch",
+    "ram": "16GB",
+    "storage": "512GB SSD",
+    "processor": "Intel Core i7 13th Gen",
+    "gpu": "NVIDIA RTX 4050",
+    "weight": "2.4 kg",
+    "dimensions": "359 x 264 x 23 mm",
+    "colors": [
+      { "name": "Luna Grey", "image": "lenovo-loq-3" }
+    ],
+    "gallery": [
+      "lenovo-loq-3",
+      "lenovo-loq-4"
+    ],
+    "description": "Modern gaming laptop with strong performance and sleek design. Ideal for gamers and power users.",
+    "rating": 4.7,
+    "reviews": [
+      { "user": "Ali M.", "comment": "Runs games very smoothly.", "rating": 4.7 },
+      { "user": "Sara N.", "comment": "Excellent design and performance.", "rating": 4.6 }
+    ]
+  },
+  {
+    "id": 16,
+    "brand": "Asus",
+    "model": "VivoBook 15 X1504",
+    "category": "Student",
+    "price": 165000,
+    "screenSize": "15.6 inch",
+    "ram": "8GB",
+    "storage": "512GB SSD",
+    "processor": "Intel Core i5 13th Gen",
+    "gpu": "Intel Iris Xe",
+    "weight": "1.7 kg",
+    "dimensions": "359 x 232 x 19.9 mm",
+    "colors": [
+      { "name": "Luna Grey", "image": "asus-vivobook-1" }
+    ],
+    "gallery": [
+      "asus-vivobook-1",
+      "asus-vivobook-2",
+      "asus-vivobook-3"
+    ],
+    "description": "Slim and stylish laptop built for daily productivity. Smooth performance for students and professionals.",
+    "rating": 4.2,
+    "reviews": [
+      { "user": "Haris L.", "comment": "Good for study and office tasks.", "rating": 4 },
+      { "user": "Maya T.", "comment": "Nice lightweight laptop.", "rating": 4.5 }
+    ]
+  },
+  {
+    "id": 17,
+    "brand": "Asus",
+    "model": "ROG Strix G16",
+    "category": "Gaming",
+    "price": 520000,
+    "screenSize": "16 inch",
+    "ram": "32GB",
+    "storage": "1TB SSD",
+    "processor": "Intel Core i9 13th Gen",
+    "gpu": "NVIDIA RTX 4070",
+    "weight": "2.5 kg",
+    "dimensions": "354 x 264 x 30 mm",
+    "colors": [
+      { "name": "Eclipse Gray", "image": "asus-rog-1" }
+    ],
+    "gallery": [
+      "asus-rog-1",
+      "asus-rog-2",
+      "asus-rog-3"
+    ],
+    "description": "High-performance gaming laptop with advanced cooling system. Designed for competitive esports gaming.",
+    "rating": 4.9,
+    "reviews": [
+      { "user": "Omar A.", "comment": "Best for gaming and esports.", "rating": 5 },
+      { "user": "Zara S.", "comment": "Powerful and cool under load.", "rating": 4.8 }
+    ]
+  },
+  {
+    "id": 18,
+    "brand": "Asus",
+    "model": "ZenBook 14 OLED",
+    "category": "Business",
+    "price": 295000,
+    "screenSize": "14 inch",
+    "ram": "16GB",
+    "storage": "1TB SSD",
+    "processor": "Intel Core i7 13th Gen",
+    "gpu": "Intel Iris Xe",
+    "weight": "1.39 kg",
+    "dimensions": "313 x 220 x 16.9 mm",
+    "colors": [
+      { "name": "Ponder Blue", "image": "asus-zenbook-1" }
+    ],
+    "gallery": [
+      "asus-zenbook-1",
+      "asus-zenbook-2",
+      "asus-zenbook-3"
+    ],
+    "description": "Premium ultrabook with stunning OLED display. Lightweight design for creative professionals.",
+    "rating": 4.6,
+    "reviews": [
+      { "user": "Hina S.", "comment": "Bright OLED and light design.", "rating": 4.5 },
+      { "user": "Bilal K.", "comment": "Perfect for business trips.", "rating": 4.6 }
+    ]
+  },
+  {
+    "id": 19,
+    "brand": "Asus",
+    "model": "TUF Gaming F15",
+    "category": "Gaming",
+    "price": 345000,
+    "screenSize": "15.6 inch",
+    "ram": "16GB",
+    "storage": "1TB SSD",
+    "processor": "Intel Core i7 12th Gen",
+    "gpu": "NVIDIA RTX 4060",
+    "weight": "2.3 kg",
+    "dimensions": "354 x 251 x 24.9 mm",
+    "colors": [
+      { "name": "Graphite Black", "image": "asus-tuf-1" }
+    ],
+    "gallery": [
+      "asus-tuf-1",
+      "asus-tuf-2", 
+      "asus-tuf-3",
+      "asus-tuf-4"
+    ],
+    "description": "Durable gaming laptop with military-grade build quality. Reliable performance for intense gaming.",
+    "rating": 4.7,
+    "reviews": [
+      { "user": "Ali M.", "comment": "Solid gaming laptop.", "rating": 4.7 },
+      { "user": "Sara N.", "comment": "Good performance for price.", "rating": 4.6 }
+    ]
+  },
+  {
+    "id": 20,
+    "brand": "Asus",
+    "model": "ExpertBook B9",
+    "category": "Business",
+    "price": 410000,
+    "screenSize": "14 inch",
+    "ram": "16GB",
+    "storage": "1TB SSD",
+    "processor": "Intel Core i7 13th Gen",
+    "gpu": "Intel Iris Xe",
+    "weight": "0.99 kg",
+    "dimensions": "320 x 203 x 14.9 mm",
+    "colors": [
+      { "name": "Star Black", "image": "asus-expertbook-1" }
+    ],
+    "gallery": [
+      "asus-expertbook-1",
+      "asus-expertbook-2",
+      "asus-expertbook-3"
+    ],
+    "description": "Ultra-light business laptop with premium build. Perfect for executives and frequent travelers.",
+    "rating": 4.8,
+    "reviews": [
+      { "user": "Omar F.", "comment": "Lightweight and premium.", "rating": 4.8 },
+      { "user": "Zara M.", "comment": "Excellent for travel.", "rating": 4.7 }
+    ]
+  },
+  {
+    "id": 21,
+    "brand": "Acer",
+    "model": "Aspire 5 A515",
+    "category": "Student",
+    "price": 155000,
+    "screenSize": "15.6 inch",
+    "ram": "8GB",
+    "storage": "512GB SSD",
+    "processor": "Intel Core i5 12th Gen",
+    "gpu": "Intel Iris Xe",
+    "weight": "1.8 kg",
+    "dimensions": "363 x 238 x 17.9 mm",
+    "colors": [
+      { "name": "Steel Gray", "image": "acer-aspire-1" }
+    ],
+    "gallery": [
+      "acer-aspire-1",
+      "acer-aspire-2"
+    ],
+    "description": "Affordable performance laptop for daily computing tasks. Great balance of power and value.",
+    "rating": 4.1,
+    "reviews": [
+      { "user": "Ali K.", "comment": "Good for study and office.", "rating": 4 },
+      { "user": "Sara L.", "comment": "Nice value for money.", "rating": 4.2 }
+    ]
+  },
+  {
+    "id": 22,
+    "brand": "Acer",
+    "model": "Predator Helios 16",
+    "category": "Gaming",
+    "price": 560000,
+    "screenSize": "16 inch",
+    "ram": "32GB",
+    "storage": "1TB SSD",
+    "processor": "Intel Core i9 13th Gen",
+    "gpu": "NVIDIA RTX 4080",
+    "weight": "2.7 kg",
+    "dimensions": "357 x 278 x 27 mm",
+    "colors": [
+      { "name": "Abyssal Black", "image": "acer-predator-1" }
+    ],
+    "gallery": [
+      "acer-predator-1",
+      "acer-predator-2",
+      "acer-predator-3"
+    ],
+    "description": "Extreme gaming powerhouse with cutting-edge RTX graphics. Built for serious gamers and creators.",
+    "rating": 4.9,
+    "reviews": [
+      { "user": "Omar A.", "comment": "Excellent for high-end gaming.", "rating": 5 },
+      { "user": "Zara S.", "comment": "RTX 4080 is beastly.", "rating": 4.8 }
+    ]
+  },
+  {
+    "id": 23,
+    "brand": "Acer",
+    "model": "Nitro 5 AN515",
+    "category": "Gaming",
+    "price": 285000,
+    "screenSize": "15.6 inch",
+    "ram": "16GB",
+    "storage": "512GB SSD",
+    "processor": "Intel Core i7 12th Gen",
+    "gpu": "NVIDIA RTX 3050",
+    "weight": "2.3 kg",
+    "dimensions": "363 x 255 x 24 mm",
+    "colors": [
+      { "name": "Obsidian Black", "image": "asus-nitro-1" }
+    ],
+    "gallery": [
+      "asus-nitro-1",
+      "asus-nitro-2"
+    ],
+    "description": "Mid-range gaming laptop with powerful graphics performance. Ideal for casual and competitive gamers.",
+    "rating": 4.5,
+    "reviews": [
+      { "user": "Ali M.", "comment": "Good performance for mid-range gaming.", "rating": 4.5 },
+      { "user": "Sara N.", "comment": "Works well for games.", "rating": 4.5 }
+    ]
+  },
+  {
+    "id": 24,
+    "brand": "Acer",
+    "model": "Swift 3 SF314",
+    "category": "Business",
+    "price": 245000,
+    "screenSize": "14 inch",
+    "ram": "16GB",
+    "storage": "512GB SSD",
+    "processor": "AMD Ryzen 7",
+    "gpu": "Radeon Graphics",
+    "weight": "1.25 kg",
+    "dimensions": "322 x 212 x 15.9 mm",
+    "colors": [
+      { "name": "Pure Silver", "image": "acer-swift-1" }
+    ],
+    "gallery": [
+      "acer-swift-1",
+      "acer-swift-2",
+      "acer-swift-3"
+    ],
+    "description": "Slim and lightweight ultrabook with strong battery life. Perfect for work and travel.",
+    "rating": 4.4,
+    "reviews": [
+      { "user": "Haris L.", "comment": "Great ultrabook for work.", "rating": 4.4 },
+      { "user": "Maya T.", "comment": "Battery life is impressive.", "rating": 4.5 }
+    ]
+  },
+  {
+    "id": 25,
+    "brand": "Acer",
+    "model": "TravelMate P2",
+    "category": "Business",
+    "price": 210000,
+    "screenSize": "14 inch",
+    "ram": "16GB",
+    "storage": "512GB SSD",
+    "processor": "Intel Core i7 13th Gen",
+    "gpu": "Intel Iris Xe",
+    "weight": "1.6 kg",
+    "dimensions": "329 x 233 x 20 mm",
+    "colors": [
+      { "name": "Slate Blue", "image": "acer-travelmate-1" }
+    ],
+    "gallery": [
+      "acer-travelmate-1",
+      "acer-travelmate-2"
+    ],
+    "description": "Business-focused laptop with solid security features. Designed for productivity and reliability.",
+    "rating": 4.3,
+    "reviews": [
+      { "user": "Ali R.", "comment": "Good for office use.", "rating": 4.3 },
+      { "user": "Sara F.", "comment": "Reliable and secure.", "rating": 4.3 }
+    ]
+  }
+]
