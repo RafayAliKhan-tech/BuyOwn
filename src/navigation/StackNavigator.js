@@ -22,9 +22,9 @@ import TabNavigator from "./TabNavigator";
 
 const Stack = createNativeStackNavigator();
 
-export default function StackNavigator({ isLoggedIn }) {
+export default function StackNavigator() {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName="SplashStart">
 
       {/* Splash */}
       <Stack.Screen
@@ -40,73 +40,6 @@ export default function StackNavigator({ isLoggedIn }) {
         options={{ headerShown: false }}
       />
 
-      {/* Main Tabs */}
-      <Stack.Screen
-        name="MainTabs"
-        component={TabNavigator}
-        options={{ headerShown: false }}
-      />
-
-      {/* WITH DEFAULT HEADER (NO CUSTOM TOPBAR) */}
-      <Stack.Screen
-        name="ProfileScreen"
-        component={ProfileScreen}
-        options={{ headerShown: false }}
-      />
-
-      <Stack.Screen
-        name="EditProfile"
-        component={EditProfileScreen}
-        options={{ headerShown: false }}
-      />
-
-      <Stack.Screen
-        name="GeneralSettings"
-        component={GeneralSettingsScreen}
-        options={{ headerShown: false }}
-      />
-
-      <Stack.Screen
-        name="Settings"
-        component={SettingsScreen}
-        options={{ headerShown: true }}
-      />
-
-      <Stack.Screen
-        name="MyOrders"
-        component={MyOrdersScreen}
-        options={{ headerShown: true }}
-      />
-
-      <Stack.Screen
-        name="MyCart"
-        component={CartScreen}
-        options={{ headerShown: true }}
-      />
-
-      <Stack.Screen
-        name="Checkout"
-        component={CheckOutScreen}
-        options={{ headerShown: true }}
-      />
-
-      {/* ❌ TOPBAR REMOVED FROM THESE 2 SCREENS */}
-      <Stack.Screen
-        name="ProductDetails"
-        component={ProductDetailsScreen}
-        options={{ headerShown: false }}
-      />
-
-      <Stack.Screen
-        name="CategoryScreen"
-        component={CategoryScreen}
-        options={{
-          headerShown: false,
-          presentation: "modal",
-          animation: "slide_from_bottom",
-        }}
-      />
-
       {/* Auth */}
       <Stack.Screen
         name="Login"
@@ -118,6 +51,35 @@ export default function StackNavigator({ isLoggedIn }) {
         name="Register"
         component={RegisterScreen}
         options={{ headerShown: false }}
+      />
+
+      {/* Main App */}
+      <Stack.Screen
+        name="MainTabs"
+        component={TabNavigator}
+        options={{ headerShown: false }}
+      />
+
+      {/* Other Screens */}
+      <Stack.Screen name="ProfileScreen" component={ProfileScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="EditProfile" component={EditProfileScreen} options={{ headerShown: false }} />
+      <Stack.Screen name="GeneralSettings" component={GeneralSettingsScreen} options={{ headerShown: false }} />
+
+      <Stack.Screen name="Settings" component={SettingsScreen} options={{ headerShown: true }} />
+      <Stack.Screen name="MyOrders" component={MyOrdersScreen} options={{ headerShown: true }} />
+      <Stack.Screen name="MyCart" component={CartScreen} options={{ headerShown: true }} />
+      <Stack.Screen name="Checkout" component={CheckOutScreen} options={{ headerShown: true }} />
+
+      <Stack.Screen name="ProductDetails" component={ProductDetailsScreen} options={{ headerShown: false }} />
+
+      <Stack.Screen
+        name="CategoryScreen"
+        component={CategoryScreen}
+        options={{
+          headerShown: false,
+          presentation: "modal",
+          animation: "slide_from_bottom",
+        }}
       />
 
     </Stack.Navigator>

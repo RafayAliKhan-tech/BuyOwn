@@ -1,32 +1,15 @@
-//src/navigation/AppNavigator.js
-import React, { useContext } from "react";
+// src/navigation/AppNavigator.js
+import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { ActivityIndicator, View } from "react-native";
 import StackNavigator from "./StackNavigator";
-import { AuthContext, AuthProvider } from "../context/AuthContext";
-
-const NavigationStack = () => {
-  const { isLoading, isLoggedIn } = useContext(AuthContext);
-
-  if (isLoading) {
-    return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <ActivityIndicator size="large" color="#253347" />
-      </View>
-    );
-  }
-
-  return (
-    <NavigationContainer>
-      <StackNavigator isLoggedIn={isLoggedIn} />
-    </NavigationContainer>
-  );
-};
+import { AuthProvider } from "../context/AuthContext";
 
 export default function AppNavigator() {
   return (
     <AuthProvider>
-      <NavigationStack />
+      <NavigationContainer>
+        <StackNavigator />
+      </NavigationContainer>
     </AuthProvider>
   );
 }

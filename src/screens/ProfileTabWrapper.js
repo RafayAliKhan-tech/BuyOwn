@@ -1,19 +1,17 @@
-// src/screens/ProfileTabWrapper.js
 import React, { useContext } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { AuthContext } from '../context/AuthContext';
 import { Ionicons } from '@expo/vector-icons';
 import { COLORS } from '../constants/theme';
+import ProfileScreen from './ProfileScreen'; // ✅ import karo
 
-/**
- * This wrapper component checks if user is logged in
- * If logged in: Shows ProfileScreen
- * If not logged in: Shows login/register prompt
- */
 export default function ProfileTabWrapper({ navigation }) {
   const authContext = useContext(AuthContext);
   const isLoggedIn = authContext?.isLoggedIn || authContext?.userToken;
 
+  // ❌ REMOVE useEffect completely
+
+  // ✅ If NOT logged in
   if (!isLoggedIn) {
     return (
       <View style={styles.container}>
@@ -34,14 +32,14 @@ export default function ProfileTabWrapper({ navigation }) {
           <View style={styles.buttonContainer}>
             <TouchableOpacity 
               style={[styles.button, styles.primaryButton]}
-              onPress={() => navigation.navigate('AuthStack', { screen: 'Login' })}
+              onPress={() => navigation.navigate('Login')}
             >
               <Text style={styles.primaryButtonText}>Login</Text>
             </TouchableOpacity>
 
             <TouchableOpacity 
               style={[styles.button, styles.secondaryButton]}
-              onPress={() => navigation.navigate('AuthStack', { screen: 'Register' })}
+              onPress={() => navigation.navigate('Register')}
             >
               <Text style={styles.secondaryButtonText}>Create Account</Text>
             </TouchableOpacity>
@@ -51,16 +49,8 @@ export default function ProfileTabWrapper({ navigation }) {
     );
   }
 
-  // If logged in, navigate to ProfileScreen
-  React.useEffect(() => {
-    navigation.navigate('ProfileScreen');
-  }, [navigation, isLoggedIn]);
-
-  return (
-    <View style={styles.container}>
-      <Text>Loading Profile...</Text>
-    </View>
-  );
+  // ✅ If logged in → directly render ProfileScreen
+  return <ProfileScreen navigation={navigation} />;
 }
 
 const styles = StyleSheet.create({
