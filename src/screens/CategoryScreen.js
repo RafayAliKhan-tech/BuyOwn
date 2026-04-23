@@ -1,3 +1,187 @@
+// // src/screens/CategoryScreen.js
+// import React, { useMemo } from "react";
+// import {
+//   View,
+//   Text,
+//   StyleSheet,
+//   FlatList,
+//   Image,
+//   TouchableOpacity,
+//   SafeAreaView,
+//   StatusBar,
+// } from "react-native";
+// import { useSelector } from "react-redux";
+// import { Ionicons } from "@expo/vector-icons";
+// import { IMAGES } from "../imageMap";
+
+// const CategoryScreen = ({ navigation }) => {
+//   const { items } = useSelector((state) => state.products);
+
+//   const categoryData = useMemo(() => {
+//     const brands = ["Dell", "HP", "Lenovo", "Asus", "Acer"];
+//     return brands.map((brandName) => {
+//       const brandProducts = items.filter((p) => p.brand === brandName);
+//       const firstProductImageKey = brandProducts[0]?.gallery?.[0] || 'placeholder';
+
+//       return {
+//         id: brandName,
+//         name: brandName,
+//         count: brandProducts.length,
+//         imageKey: firstProductImageKey,
+//       };
+//     });
+//   }, [items]);
+
+//   const renderItem = ({ item }) => (
+//     <TouchableOpacity
+//       style={styles.card}
+//       activeOpacity={0.7}
+//       onPress={() => navigation.navigate("MainTabs", {
+//         screen: "Home",
+//         params: { selectedBrand: item.name },
+//       })}
+//     >
+//       <View style={styles.cardContent}>
+//         <View style={styles.imageContainer}>
+//           <Image
+//             source={IMAGES[item.imageKey] || IMAGES.placeholder}
+//             style={styles.brandImage}
+//           />
+//         </View>
+
+//         <View style={styles.textContainer}>
+//           <Text style={styles.brandName}>{item.name}</Text>
+//           <Text style={styles.productCount}>{item.count} items available</Text>
+//         </View>
+
+//         <View style={styles.arrowCircle}>
+//           <Ionicons name="chevron-forward" size={16} color="#6A5ACD" />
+//         </View>
+//       </View>
+//     </TouchableOpacity>
+//   );
+
+//   return (
+//     <SafeAreaView style={styles.container}>
+//       <StatusBar barStyle="dark-content" backgroundColor="#FBFBFB" />
+
+//       {/* Aligned Header */}
+//       <View style={styles.header}>
+//         <TouchableOpacity
+//           style={styles.backButton}
+//           onPress={() => navigation.goBack()}
+//         >
+//           <Ionicons name="chevron-back" size={24} color="#000" />
+//         </TouchableOpacity>
+//         <Text style={styles.headerTitle}>Categories</Text>
+//       </View>
+
+//       <FlatList
+//         data={categoryData}
+//         renderItem={renderItem}
+//         keyExtractor={(item) => item.id}
+//         contentContainerStyle={styles.listContent}
+//         showsVerticalScrollIndicator={false}
+//       />
+//     </SafeAreaView>
+//   );
+// };
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: "#FBFBFB"
+//   },
+//   header: {
+//     flexDirection: "row", // Isse button aur text ek line mein agaye
+//     alignItems: "center", // Isse vertically center hogaye
+//     paddingHorizontal: 20,
+//     paddingTop: 15,
+//     paddingBottom: 20,
+//   },
+//   backButton: {
+//     width: 45,
+//     height: 45,
+//     borderRadius: 14,
+//     backgroundColor: "#FFF",
+//     justifyContent: "center",
+//     alignItems: "center",
+//     marginTop: 35,
+//     marginRight: 15,
+//     // Subtle Shadow
+//     shadowColor: "#000",
+//     shadowOffset: { width: 0, height: 2 },
+//     shadowOpacity: 0.08,
+//     shadowRadius: 8,
+//     elevation: 3,
+//   },
+//   headerTitle: {
+//     fontSize: 30,
+//     fontWeight: "800",
+//     marginTop: 35,
+//     color: "#1A1A1A",
+//     letterSpacing: -0.5,
+//   },
+//   listContent: {
+//     paddingHorizontal: 20,
+//     paddingBottom: 40,
+//   },
+//   card: {
+//     backgroundColor: "#FFFFFF",
+//     borderRadius: 22,
+//     marginBottom: 16,
+//     padding: 10,
+//     borderWidth: 1,
+//     borderColor: "#F0F0F0",
+//     shadowColor: "#000",
+//     shadowOffset: { width: 0, height: 4 },
+//     shadowOpacity: 0.03,
+//     shadowRadius: 10,
+//     elevation: 1,
+//   },
+//   cardContent: {
+//     flexDirection: "row",
+//     alignItems: "center",
+//   },
+//   imageContainer: {
+//     width: 75,
+//     height: 75,
+//     borderRadius: 18,
+//     backgroundColor: "#F8F9FB",
+//     justifyContent: "center",
+//     alignItems: "center",
+//   },
+//   brandImage: {
+//     width: 55,
+//     height: 55,
+//     resizeMode: "contain",
+//   },
+//   textContainer: {
+//     flex: 1,
+//     marginLeft: 15,
+//   },
+//   brandName: {
+//     fontSize: 18,
+//     fontWeight: "700",
+//     color: "#1A1A1A",
+//   },
+//   productCount: {
+//     fontSize: 13,
+//     color: "#999",
+//     marginTop: 2,
+//   },
+//   arrowCircle: {
+//     width: 34,
+//     height: 34,
+//     borderRadius: 17,
+//     backgroundColor: "#F5F7F9",
+//     justifyContent: "center",
+//     alignItems: "center",
+//     marginRight: 5,
+//   },
+// });
+
+// export default CategoryScreen;
 // src/screens/CategoryScreen.js
 import React, { useMemo } from "react";
 import {
@@ -14,14 +198,19 @@ import { useSelector } from "react-redux";
 import { Ionicons } from "@expo/vector-icons";
 import { IMAGES } from "../imageMap";
 
-const CategoryScreen = ({ navigation }) => {
+const CategoryScreen = ({ navigation, route }) => {
+
   const { items } = useSelector((state) => state.products);
+
+  // 👇 selected brand coming from ProductListScreen
+  const selectedBrand = route?.params?.selectedBrand || null;
 
   const categoryData = useMemo(() => {
     const brands = ["Dell", "HP", "Lenovo", "Asus", "Acer"];
+
     return brands.map((brandName) => {
       const brandProducts = items.filter((p) => p.brand === brandName);
-      const firstProductImageKey = brandProducts[0]?.gallery?.[0] || 'placeholder';
+      const firstProductImageKey = brandProducts[0]?.gallery?.[0] || "placeholder";
 
       return {
         id: brandName,
@@ -36,10 +225,12 @@ const CategoryScreen = ({ navigation }) => {
     <TouchableOpacity
       style={styles.card}
       activeOpacity={0.7}
-      onPress={() => navigation.navigate("MainTabs", {
-        screen: "Home",
-        params: { selectedBrand: item.name },
-      })}
+      onPress={() =>
+        navigation.navigate("MainTabs", {
+          screen: "Home",
+          params: { selectedBrand: item.name },
+        })
+      }
     >
       <View style={styles.cardContent}>
         <View style={styles.imageContainer}>
@@ -51,7 +242,9 @@ const CategoryScreen = ({ navigation }) => {
 
         <View style={styles.textContainer}>
           <Text style={styles.brandName}>{item.name}</Text>
-          <Text style={styles.productCount}>{item.count} items available</Text>
+          <Text style={styles.productCount}>
+            {item.count} items available
+          </Text>
         </View>
 
         <View style={styles.arrowCircle}>
@@ -62,9 +255,45 @@ const CategoryScreen = ({ navigation }) => {
   );
 
   return (
-    <SafeAreaView style={[styles.container, { paddingTop: 0 }]}>
+    <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#FBFBFB" />
 
+      {/* 🔥 HEADER (UPDATED FINAL) */}
+      <View style={styles.header}>
+
+        {/* LEFT BACK */}
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => navigation.goBack()}
+        >
+          <Ionicons name="chevron-back" size={24} color="#000" />
+        </TouchableOpacity>
+
+        {/* CENTER TITLE (DYNAMIC) */}
+        <Text style={styles.headerTitle}>
+          {selectedBrand ? `Showing: ${selectedBrand} Laptops` : "Categories"}
+        </Text>
+
+        {/* RIGHT X BUTTON */}
+        {selectedBrand ? (
+          <TouchableOpacity
+            style={styles.closeButton}
+            onPress={() =>
+              navigation.navigate("MainTabs", {
+                screen: "Home",
+                params: { selectedBrand: null }, // reset filter
+              })
+            }
+          >
+            <Ionicons name="close" size={22} color="#000" />
+          </TouchableOpacity>
+        ) : (
+          <View style={{ width: 45 }} />
+        )}
+
+      </View>
+
+      {/* LIST */}
       <FlatList
         data={categoryData}
         renderItem={renderItem}
@@ -79,15 +308,18 @@ const CategoryScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#FBFBFB"
+    backgroundColor: "#FBFBFB",
   },
+
   header: {
-    flexDirection: "row", // Isse button aur text ek line mein agaye
-    alignItems: "center", // Isse vertically center hogaye
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     paddingHorizontal: 20,
     paddingTop: 15,
     paddingBottom: 20,
   },
+
   backButton: {
     width: 45,
     height: 45,
@@ -96,25 +328,33 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 35,
-    marginRight: 15,
-    // Subtle Shadow
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.08,
-    shadowRadius: 8,
-    elevation: 3,
   },
+
+  closeButton: {
+    width: 45,
+    height: 45,
+    borderRadius: 14,
+    backgroundColor: "#FFF",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 35,
+  },
+
   headerTitle: {
-    fontSize: 30,
+    fontSize: 16,
     fontWeight: "800",
     marginTop: 35,
     color: "#1A1A1A",
-    letterSpacing: -0.5,
+    textAlign: "center",
+    flex: 1,
+    marginHorizontal: 10,
   },
+
   listContent: {
     paddingHorizontal: 20,
     paddingBottom: 40,
   },
+
   card: {
     backgroundColor: "#FFFFFF",
     borderRadius: 22,
@@ -122,16 +362,13 @@ const styles = StyleSheet.create({
     padding: 10,
     borderWidth: 1,
     borderColor: "#F0F0F0",
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.03,
-    shadowRadius: 10,
-    elevation: 1,
   },
+
   cardContent: {
     flexDirection: "row",
     alignItems: "center",
   },
+
   imageContainer: {
     width: 75,
     height: 75,
@@ -140,25 +377,30 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+
   brandImage: {
     width: 55,
     height: 55,
     resizeMode: "contain",
   },
+
   textContainer: {
     flex: 1,
     marginLeft: 15,
   },
+
   brandName: {
     fontSize: 18,
     fontWeight: "700",
     color: "#1A1A1A",
   },
+
   productCount: {
     fontSize: 13,
     color: "#999",
     marginTop: 2,
   },
+
   arrowCircle: {
     width: 34,
     height: 34,

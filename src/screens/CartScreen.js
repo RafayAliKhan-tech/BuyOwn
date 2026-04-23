@@ -106,7 +106,7 @@ const MyCartScreen = () => {
   return (
     <SafeAreaView style={[styles.container, { paddingTop: 0 }]}>
       <View style={styles.headerContainer}>
-        <Text style={styles.header}>My Cart</Text>
+        {/* <Text style={styles.header}>My Cart</Text> */}
         <Text style={styles.itemCount}>{cartItems.length} Items</Text>
       </View>
 

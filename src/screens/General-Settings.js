@@ -1,3 +1,4 @@
+//src/screens/General-Settings.js
 import React, { useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {

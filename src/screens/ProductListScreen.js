@@ -122,7 +122,8 @@ const ProductListScreen = ({ navigation, route }) => {
   }
 
   return (
-    <SafeAreaView style={[styles.safeArea, { paddingTop: 0 }]} edges={['top']}>
+    // <SafeAreaView style={[styles.safeArea, { paddingTop: 0 }]} edges={['top']}>
+    <SafeAreaView style={styles.safeArea} edges={[]}>
       <StatusBar barStyle="dark-content" backgroundColor={COLORS.white} />
       <FlatList
         data={processedData}
@@ -194,7 +195,11 @@ const ProductListScreen = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: COLORS.background },
   loader: { flex: 1, justifyContent: "center", alignItems: "center" },
-  headerSection: { paddingTop: 10 },
+  // headerSection: { paddingTop: 10 },
+  headerSection: {
+  paddingTop: 0,
+  marginTop: 0,
+},
   
   searchWrapper: {
     flexDirection: 'row',
@@ -202,7 +207,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
     borderRadius: 25, 
     height: 50,
-    marginBottom: 20,
+    marginBottom: 5,
     marginHorizontal: 20,
     borderWidth: 1,
     borderColor: '#E2E8F0',
