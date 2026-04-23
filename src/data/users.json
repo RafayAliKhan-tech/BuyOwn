@@ -2,9 +2,9 @@
   "users": [
     {
       "id": "1",
-      "name": "John Doe",
-      "email": "john@example.com",
-      "password": "password123",
+      "name": "laiba",
+      "email": "laibahaq@example.com",
+      "password": "",
       "createdAt": "2024-01-01T00:00:00Z"
     }
   ]

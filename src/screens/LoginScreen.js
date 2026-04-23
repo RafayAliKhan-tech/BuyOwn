@@ -65,10 +65,8 @@ const LoginScreen = ({ navigation }) => {
     setLoading(false);
 
     if (result.success) {
-      // ❌ NO navigation.navigate("MainTabs")
-      // ✅ Navigation auto ho jayegi via AuthContext
-
-      Alert.alert('Success', 'Login successful');
+      // ✅ Redirect to ProfileScreen after successful login
+      navigation.navigate('ProfileScreen');
 
       // optional cleanup
       setEmail('');
