@@ -62,19 +62,8 @@ const CategoryScreen = ({ navigation }) => {
   );
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, { paddingTop: 0 }]}>
       <StatusBar barStyle="dark-content" backgroundColor="#FBFBFB" />
-
-      {/* Aligned Header */}
-      <View style={styles.header}>
-        <TouchableOpacity
-          style={styles.backButton}
-          onPress={() => navigation.goBack()}
-        >
-          <Ionicons name="chevron-back" size={24} color="#000" />
-        </TouchableOpacity>
-        <Text style={styles.headerTitle}>Categories</Text>
-      </View>
 
       <FlatList
         data={categoryData}

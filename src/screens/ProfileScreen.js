@@ -1,5 +1,5 @@
 // src/screens/ProfileScreen.js
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {
   StyleSheet,
@@ -9,55 +9,32 @@ import {
   TouchableOpacity,
   Switch,
   Image,
+  Alert,
+  ActivityIndicator,
 } from 'react-native';
 
 import FeatherIcon from 'react-native-vector-icons/Feather';
+import { AuthContext } from '../context/AuthContext';
 
 export default function ProfileSettings({ navigation }) {
+  const authContext = useContext(AuthContext);
   const [form, setForm] = useState({
     emailNotifications: true,
-    // pushNotifications: false,
   });
+  const [loading, setLoading] = useState(false);
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#f8f8f8' }}>
-      <View style={styles.header}>
-        <View style={styles.headerAction}>
-          <TouchableOpacity
-            onPress={() => {
-              // handle onPress
-            }}>
-            <FeatherIcon color="#000" name="arrow-left" size={24} />
-          </TouchableOpacity>
-        </View>
-
-        <Text numberOfLines={1} style={styles.headerTitle}>
-          Profile Settings
-        </Text>
-
-        <View style={[styles.headerAction, { alignItems: 'flex-end' }]}>
-          <TouchableOpacity
-            onPress={() => {
-              // handle onPress
-            }}>
-            <FeatherIcon color="#000" name="more-vertical" size={24} />
-          </TouchableOpacity>
-        </View>
-      </View>
-
+    <SafeAreaView style={[{ flex: 1, backgroundColor: '#f8f8f8' }, { paddingTop: 0 }]}>
       <ScrollView contentContainerStyle={styles.content}>
         <View style={[styles.section, { paddingTop: 4 }]}>
           <Text style={styles.sectionTitle}>Account</Text>
 
           <View style={styles.sectionBody}>
             <TouchableOpacity
-              // onPress={() => {
-              //   // handle onPress
-              // }}
               onPress={() => navigation.navigate('EditProfile')}
               style={styles.profile}>
               <Image
-                alt=""
+                alt="profile"
                 source={{
                   uri: 'https://i.pinimg.com/474x/00/80/ee/0080eeaeaa2f2fba77af3e1efeade565.jpg',
                 }}
@@ -65,9 +42,13 @@ export default function ProfileSettings({ navigation }) {
               />
 
               <View style={styles.profileBody}>
-                <Text style={styles.profileName}>John Doe</Text>
+                <Text style={styles.profileName}>
+                  {authContext.user?.name || 'User'}
+                </Text>
 
-                <Text style={styles.profileHandle}>john@example.com</Text>
+                <Text style={styles.profileHandle}>
+                  {authContext.user?.email || 'email@example.com'}
+                </Text>
               </View>
 
               <FeatherIcon color="#bcbcbc" name="chevron-right" size={22} />
@@ -148,7 +129,7 @@ export default function ProfileSettings({ navigation }) {
             <View style={styles.rowWrapper}>
               <TouchableOpacity
                 onPress={() => {
-                  // handle order history
+                  navigation.navigate("MyOrders");
                 }}
                 style={styles.row}>
                 <FeatherIcon
@@ -264,10 +245,33 @@ export default function ProfileSettings({ navigation }) {
               ]}>
               <TouchableOpacity
                 onPress={() => {
-                  // handle onPress
+                  Alert.alert('Confirm Logout', 'Are you sure you want to log out?', [
+                    {
+                      text: 'Cancel',
+                      onPress: () => {},
+                      style: 'cancel',
+                    },
+                    {
+                      text: 'Logout',
+                      onPress: async () => {
+                        setLoading(true);
+                        const result = await authContext.logout();
+                        setLoading(false);
+                        if (result.success) {
+                          Alert.alert('Logged Out', 'You have been logged out successfully');
+                          // App will automatically show Login screen due to auth state change
+                        }
+                      },
+                      style: 'destructive',
+                    },
+                  ]);
                 }}
                 style={styles.logoutRow}>
-                <Text style={styles.logoutText}>Log Out</Text>
+                {loading ? (
+                  <ActivityIndicator size="small" color="#fff" />
+                ) : (
+                  <Text style={styles.logoutText}>Log Out</Text>
+                )}
               </TouchableOpacity>
             </View>
           </View>

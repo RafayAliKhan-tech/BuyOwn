@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import {
   View,
   Text,
@@ -8,10 +8,14 @@ import {
   Animated,
   Switch,
   ScrollView,
+  Alert,
+  ActivityIndicator,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'; // For eye icon
+import { AuthContext } from '../context/AuthContext';
 
-const RegisterScreen = () => {
+const RegisterScreen = ({ navigation }) => {
+  const authContext = useContext(AuthContext);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -19,6 +23,8 @@ const RegisterScreen = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
   const [agreeTerms, setAgreeTerms] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   // Animation for background
   const fadeAnim = useRef(new Animated.Value(0)).current;
@@ -44,6 +50,45 @@ const RegisterScreen = () => {
     inputRange: [0, 1],
     outputRange: ['#5C708A', '#253347'],
   });
+
+  const handleRegister = async () => {
+    // Clear previous error
+    setErrorMessage('');
+
+    // Validate terms agreement
+    if (!agreeTerms) {
+      Alert.alert('Terms Required', 'Please agree to the Terms of Service');
+      return;
+    }
+
+    setLoading(true);
+
+    // Call registration from auth context
+    const result = await authContext.register(name, email, password, confirmPassword);
+
+    setLoading(false);
+
+    if (result.success) {
+      Alert.alert('Success', 'Registration successful! Please login now.', [
+        {
+          text: 'OK',
+          onPress: () => {
+            // Navigate to login screen
+            navigation.navigate('Login');
+          },
+        },
+      ]);
+      // Reset form
+      setName('');
+      setEmail('');
+      setPassword('');
+      setConfirmPassword('');
+      setAgreeTerms(false);
+    } else {
+      setErrorMessage(result.message);
+      Alert.alert('Registration Failed', result.message);
+    }
+  };
 
   return (
     <Animated.View style={[styles.container, { backgroundColor }]}>
@@ -138,12 +183,24 @@ const RegisterScreen = () => {
             </View>
           </View>
 
+          {/* Error message display */}
+          {errorMessage ? (
+            <View style={styles.errorContainer}>
+              <Text style={styles.errorText}>{errorMessage}</Text>
+            </View>
+          ) : null}
+
           {/* Register button */}
           <TouchableOpacity 
-            style={styles.button}
-            onPress={() => navigation.navigate('ProductListHome')}
+            style={[styles.button, loading && { opacity: 0.6 }]}
+            onPress={handleRegister}
+            disabled={loading}
           >
-            <Text style={styles.buttonText}>Register</Text>
+            {loading ? (
+              <ActivityIndicator size="small" color="#fff" />
+            ) : (
+              <Text style={styles.buttonText}>Register</Text>
+            )}
           </TouchableOpacity>
 
           {/* Or Signup with */}
@@ -160,6 +217,14 @@ const RegisterScreen = () => {
 
             <TouchableOpacity style={styles.socialBox}>
               <Ionicons name="logo-windows" size={24} color="#00A4EF" />
+            </TouchableOpacity>
+          </View>
+
+          {/* Login link */}
+          <View style={styles.signupRow}>
+            <Text style={styles.signupText}>Already have an account? </Text>
+            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
+              <Text style={styles.signupLink}>Login</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -272,6 +337,34 @@ const styles = StyleSheet.create({
     borderColor: '#ddd',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  errorContainer: {
+    backgroundColor: '#ffebee',
+    borderRadius: 8,
+    padding: 12,
+    marginBottom: 15,
+    borderLeftWidth: 4,
+    borderLeftColor: '#f44336',
+  },
+  errorText: {
+    color: '#c62828',
+    fontSize: 13,
+    fontWeight: '500',
+  },
+  signupRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 15,
+  },
+  signupText: {
+    fontSize: 13,
+    color: '#555',
+  },
+  signupLink: {
+    fontSize: 13,
+    color: '#253347',
+    fontWeight: '600',
   },
 });
 

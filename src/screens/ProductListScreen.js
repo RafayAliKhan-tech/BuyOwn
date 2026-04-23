@@ -16,6 +16,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../redux/productsSlice";
+import { toggleWishlist, selectIsInWishlist } from "../redux/wishlistSlice";
 import { Ionicons } from "@expo/vector-icons";
 import { IMAGES } from "../imageMap";
 import { COLORS } from "../constants/theme";
@@ -34,7 +35,8 @@ const CustomMenuIcon = () => (
 
 // --- Product Card Component ---
 const ProductCard = ({ product, navigation }) => {
-  const [liked, setLiked] = useState(false);
+  const dispatch = useDispatch();
+  const isInWishlist = useSelector(selectIsInWishlist(product?.id));
 
   const getImageSource = (imgKey) => {
     if (!imgKey) return IMAGES.placeholder;
@@ -44,6 +46,10 @@ const ProductCard = ({ product, navigation }) => {
 
   const imageUri = product?.gallery?.[0] || product?.colors?.[0]?.image || product?.image;
 
+  const handleWishlistToggle = () => {
+    dispatch(toggleWishlist(product));
+  };
+
   return (
     <TouchableOpacity
       style={cardStyles.card}
@@ -52,12 +58,12 @@ const ProductCard = ({ product, navigation }) => {
     >
       <TouchableOpacity 
         style={cardStyles.wishlistBtn} 
-        onPress={() => setLiked(!liked)}
+        onPress={handleWishlistToggle}
       >
         <Ionicons 
-          name={liked ? "heart" : "heart-outline"} 
+          name={isInWishlist ? "heart" : "heart-outline"} 
           size={20} 
-          color={liked ? "#FF4D4D" : COLORS.secondary} 
+          color={isInWishlist ? "#FF4D4D" : COLORS.secondary} 
         />
       </TouchableOpacity>
 
@@ -116,7 +122,7 @@ const ProductListScreen = ({ navigation, route }) => {
   }
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['top']}>
+    <SafeAreaView style={[styles.safeArea, { paddingTop: 0 }]} edges={['top']}>
       <StatusBar barStyle="dark-content" backgroundColor={COLORS.white} />
       <FlatList
         data={processedData}
@@ -129,30 +135,6 @@ const ProductListScreen = ({ navigation, route }) => {
         
         ListHeaderComponent={
           <View style={styles.headerSection}>
-            <View style={styles.topBar}>
-              <TouchableOpacity 
-                style={styles.iconButton}
-                onPress={() => navigation.navigate("CategoryScreen")}
-              >
-                {/* Custom Hamburger Menu Icon */}
-                <CustomMenuIcon />
-              </TouchableOpacity>
-
-              <Text style={styles.brandTitle}>
-                {selectedBrandFromMenu ? selectedBrandFromMenu : "BUYOWN"}
-              </Text>
-
-              <TouchableOpacity 
-                style={styles.iconButton}
-                onPress={() => navigation.setParams({ selectedBrand: null })}
-              >
-                <Ionicons 
-                  name={selectedBrandFromMenu ? "close-circle-outline" : "ellipsis-vertical"} 
-                  size={22} 
-                  color={COLORS.primary} 
-                />
-              </TouchableOpacity>
-            </View>
 
             {/* Search Bar - ROUNDED */}
             <View style={styles.searchWrapper}>
@@ -213,34 +195,7 @@ const styles = StyleSheet.create({
   safeArea: { flex: 1, backgroundColor: COLORS.background },
   loader: { flex: 1, justifyContent: "center", alignItems: "center" },
   headerSection: { paddingTop: 10 },
-  topBar: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    height: 50,
-    marginBottom: 15,
-    paddingHorizontal: 20,
-  },
-  brandTitle: {
-    fontSize: 20,
-    fontWeight: '900',
-    letterSpacing: 5,
-    color: COLORS.primary,
-    textTransform: 'uppercase',
-  },
-  iconButton: { width: 40, height: 40, justifyContent: "center", alignItems: "center" },
   
-  // Custom Hamburger Styles
-  customMenuContainer: {
-    alignItems: 'flex-start',
-    justifyContent: 'center',
-  },
-  menuLine: {
-    height: 2.5,
-    backgroundColor: COLORS.primary,
-    borderRadius: 2,
-  },
-
   searchWrapper: {
     flexDirection: 'row',
     alignItems: 'center',

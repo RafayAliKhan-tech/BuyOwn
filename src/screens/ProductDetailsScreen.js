@@ -11,8 +11,12 @@ import {
   StatusBar,
   Platform,
   FlatList,
+  Alert,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { useDispatch, useSelector } from "react-redux";
+import { addToCart } from "../redux/cartSlice";
+import { toggleWishlist, selectIsInWishlist } from "../redux/wishlistSlice";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { IMAGES } from "../imageMap";
 import { COLORS } from "../constants/theme";
@@ -21,9 +25,11 @@ const { width } = Dimensions.get("window");
 
 const ProductDetailsScreen = ({ route, navigation }) => {
   const { product } = route.params || {};
+  const dispatch = useDispatch();
+  const isInWishlist = useSelector(selectIsInWishlist(product?.id));
+  
   const [activeSlide, setActiveSlide] = useState(0);
   const [selectedRam, setSelectedRam] = useState(product?.ram || "16GB");
-  const [isFavorite, setIsFavorite] = useState(false);
 
   if (!product) {
     return <View style={styles.center}><Text>Product Not Found</Text></View>;
@@ -39,6 +45,27 @@ const ProductDetailsScreen = ({ route, navigation }) => {
     const scrollPosition = event.nativeEvent.contentOffset.x;
     const index = Math.round(scrollPosition / width);
     setActiveSlide(index);
+  };
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(product));
+    Alert.alert(
+      "Added to Cart ✓",
+      `${product.model} has been added to your cart.`,
+      [
+        { text: "Continue Shopping", onPress: () => navigation.goBack() },
+        { text: "View Cart", onPress: () => navigation.navigate("MyCart") },
+      ]
+    );
+  };
+
+  const handleBuyNow = () => {
+    dispatch(addToCart(product));
+    navigation.navigate("Checkout");
+  };
+
+  const handleWishlist = () => {
+    dispatch(toggleWishlist(product));
   };
 
   const technicalSpecs = [
@@ -60,8 +87,8 @@ const ProductDetailsScreen = ({ route, navigation }) => {
           <Ionicons name="chevron-back" size={24} color={COLORS.primary} />
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Product Details</Text>
-        <TouchableOpacity style={styles.navBtn} onPress={() => setIsFavorite(!isFavorite)}>
-          <Ionicons name={isFavorite ? "heart" : "heart-outline"} size={22} color={isFavorite ? "#FF4D4D" : COLORS.primary} />
+        <TouchableOpacity style={styles.navBtn} onPress={handleWishlist}>
+          <Ionicons name={isInWishlist ? "heart" : "heart-outline"} size={22} color={isInWishlist ? "#FF4D4D" : COLORS.primary} />
         </TouchableOpacity>
       </View>
 
@@ -147,14 +174,14 @@ const ProductDetailsScreen = ({ route, navigation }) => {
       {/* FIXED FLOATING FOOTER - NO LONGER HIDING */}
       <View style={styles.footerWrapper}>
         <View style={styles.footerContent}>
-          <TouchableOpacity style={styles.cartBtn} activeOpacity={0.7} onPress={() => console.log("Added")}>
+          <TouchableOpacity style={styles.cartBtn} activeOpacity={0.7} onPress={handleAddToCart}>
             <Ionicons name="cart-outline" size={20} color={COLORS.white} />
             <Text style={styles.cartBtnText}>Add to Cart</Text>
           </TouchableOpacity>
           
           <View style={styles.footerDivider} />
 
-          <TouchableOpacity style={styles.buyNowBtn} activeOpacity={0.8} onPress={() => console.log("Buying")}>
+          <TouchableOpacity style={styles.buyNowBtn} activeOpacity={0.8} onPress={handleBuyNow}>
             <Text style={styles.buyNowText}>Buy Now</Text>
             <Ionicons name="arrow-forward" size={18} color={COLORS.white} style={{marginLeft: 8}} />
           </TouchableOpacity>

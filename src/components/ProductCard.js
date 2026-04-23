@@ -1,10 +1,25 @@
 // frontend/src/components/ProductCard.js
 import React from "react";
-import { View, Text, Image, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, Image, TouchableOpacity, StyleSheet, Alert } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../redux/cartSlice";
 
 const ProductCard = ({ product, navigation }) => {
+  const dispatch = useDispatch();
   const image = product?.gallery?.[0] || product?.colors?.[0]?.image || "https://via.placeholder.com/150";
+
+  const handleAddToCart = () => {
+    dispatch(addToCart(product));
+    Alert.alert(
+      "Added to Cart ✓",
+      `${product.model} has been added to your cart.`,
+      [
+        { text: "Continue Shopping", onPress: () => {} },
+        { text: "View Cart", onPress: () => navigation.navigate("MyCart") },
+      ]
+    );
+  };
 
   return (
     <TouchableOpacity
@@ -37,9 +52,13 @@ const ProductCard = ({ product, navigation }) => {
                     <Text style={styles.rating}>{product?.rating || 4.5}</Text>
                 </View>
             </View>
-            <View style={styles.addBtn}>
+            <TouchableOpacity 
+              style={styles.addBtn}
+              onPress={handleAddToCart}
+              activeOpacity={0.8}
+            >
                 <Ionicons name="add" size={20} color="#FFF" />
-            </View>
+            </TouchableOpacity>
         </View>
       </View>
     </TouchableOpacity>

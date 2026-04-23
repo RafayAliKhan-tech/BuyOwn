@@ -53,7 +53,7 @@ const CheckoutScreen = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView style={[styles.container, { paddingTop: 0 }]}>
       {/* ✅ Added ScrollView so the screen doesn't get cut off */}
       <ScrollView 
         showsVerticalScrollIndicator={false}

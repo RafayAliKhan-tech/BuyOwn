@@ -42,7 +42,7 @@ const initialOrders = [
   },
 ];
 
-const MyOrdersScreen = () => {
+const MyOrdersScreen = ({ navigation }) => {
   const [orders] = useState(initialOrders);
 
   const renderOrderItem = ({ item }) => (
@@ -70,7 +70,7 @@ const MyOrdersScreen = () => {
   );
 
   return (
-    <SafeAreaView style={styles.container} edges={['top', 'left', 'right', 'bottom']}>
+    <SafeAreaView style={[styles.container, { paddingTop: 0 }]} edges={['top', 'left', 'right', 'bottom']}>
       {/* HEADER SECTION */}
       <View style={styles.headerContainer}>
         <Text style={styles.title}>My Orders</Text>

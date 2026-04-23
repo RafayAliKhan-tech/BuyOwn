@@ -21,25 +21,7 @@ export default function GeneralSettings() {
   });
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#f8f8f8' }}>
-      {/* Header */}
-      <View style={styles.header}>
-        <View style={styles.headerAction}>
-          <TouchableOpacity>
-            <FeatherIcon color="#000" name="arrow-left" size={24} />
-          </TouchableOpacity>
-        </View>
-
-        <Text numberOfLines={1} style={styles.headerTitle}>
-          General Settings
-        </Text>
-
-        <View style={[styles.headerAction, { alignItems: 'flex-end' }]}>
-          <TouchableOpacity>
-            <FeatherIcon color="#000" name="more-vertical" size={24} />
-          </TouchableOpacity>
-        </View>
-      </View>
+    <SafeAreaView style={[{ flex: 1, backgroundColor: '#f8f8f8' }, { paddingTop: 0 }]}>
 
       <ScrollView contentContainerStyle={styles.content}>
         {/* Appearance */}

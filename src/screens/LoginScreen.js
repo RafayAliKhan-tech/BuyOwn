@@ -1,5 +1,5 @@
-//src/screens/LoginScreen.js
-import React, { useState, useRef, useEffect } from 'react';
+// src/screens/LoginScreen.js
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import {
   View,
   Text,
@@ -8,17 +8,22 @@ import {
   StyleSheet,
   Animated,
   Switch,
+  Alert,
+  ActivityIndicator,
 } from 'react-native';
-import { Ionicons } from '@expo/vector-icons'; // For eye icon
+import { Ionicons } from '@expo/vector-icons';
+import { AuthContext } from '../context/AuthContext';
 
-// const LoginScreen = () => {
 const LoginScreen = ({ navigation }) => {
+  const { login } = useContext(AuthContext);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  // Animation for background
   const fadeAnim = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -43,17 +48,45 @@ const LoginScreen = ({ navigation }) => {
     outputRange: ['#5C708A', '#253347'],
   });
 
+  // ✅ FIXED LOGIN HANDLER
+  const handleLogin = async () => {
+    setErrorMessage('');
+
+    // 🔥 basic validation
+    if (!email || !password) {
+      setErrorMessage('Please enter email and password');
+      return;
+    }
+
+    setLoading(true);
+
+    const result = await login(email.trim(), password);
+
+    setLoading(false);
+
+    if (result.success) {
+      // ❌ NO navigation.navigate("MainTabs")
+      // ✅ Navigation auto ho jayegi via AuthContext
+
+      Alert.alert('Success', 'Login successful');
+
+      // optional cleanup
+      setEmail('');
+      setPassword('');
+    } else {
+      setErrorMessage(result.message);
+    }
+  };
+
   return (
     <Animated.View style={[styles.container, { backgroundColor }]}>
-      {/* App Name at top */}
       <Text style={styles.appName}>BuyOwn</Text>
 
       <View style={styles.formContainer}>
         <View style={styles.card}>
-          {/* Login title inside card */}
           <Text style={styles.title}>Welcome to BuyOwn{'\n'}Login now!</Text>
 
-          {/* Email input */}
+          {/* Email */}
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Email</Text>
             <TextInput
@@ -62,10 +95,11 @@ const LoginScreen = ({ navigation }) => {
               onChangeText={setEmail}
               placeholder="Email"
               placeholderTextColor="#999"
+              autoCapitalize="none"
             />
           </View>
 
-          {/* Password input with eye icon */}
+          {/* Password */}
           <View style={styles.inputContainer}>
             <Text style={styles.label}>Password</Text>
             <View style={styles.passwordWrapper}>
@@ -88,7 +122,7 @@ const LoginScreen = ({ navigation }) => {
             </View>
           </View>
 
-          {/* Remember me + Forget password */}
+          {/* Remember + Forgot */}
           <View style={styles.row}>
             <View style={styles.rememberMe}>
               <Switch value={rememberMe} onValueChange={setRememberMe} />
@@ -100,17 +134,29 @@ const LoginScreen = ({ navigation }) => {
             </TouchableOpacity>
           </View>
 
-          {/* Login button */}
-          <TouchableOpacity 
-            style={styles.button}
-            onPress={() => navigation.navigate('MainTabs')}
+          {/* Error */}
+          {errorMessage ? (
+            <View style={styles.errorContainer}>
+              <Text style={styles.errorText}>{errorMessage}</Text>
+            </View>
+          ) : null}
+
+          {/* Button */}
+          <TouchableOpacity
+            style={[styles.button, loading && { opacity: 0.6 }]}
+            onPress={handleLogin}
+            disabled={loading}
           >
-            <Text style={styles.buttonText}>Login</Text>
+            {loading ? (
+              <ActivityIndicator size="small" color="#fff" />
+            ) : (
+              <Text style={styles.buttonText}>Login</Text>
+            )}
           </TouchableOpacity>
 
-          {/* Or login with */}
           <Text style={styles.orText}>Or Login with</Text>
 
+          {/* Social */}
           <View style={styles.socialRow}>
             <TouchableOpacity style={styles.socialBox}>
               <Ionicons name="logo-facebook" size={24} color="#1877F2" />
@@ -125,14 +171,13 @@ const LoginScreen = ({ navigation }) => {
             </TouchableOpacity>
           </View>
 
-          {/* Sign up link */}
+          {/* Signup */}
           <View style={styles.signupRow}>
-            <Text style={styles.signupText}>Already have an account? </Text>
+            <Text style={styles.signupText}>Don't have an account? </Text>
             <TouchableOpacity onPress={() => navigation.navigate('Register')}>
               <Text style={styles.signupLink}>Sign up</Text>
             </TouchableOpacity>
           </View>
-
         </View>
       </View>
     </Animated.View>
@@ -150,21 +195,22 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#fff',
     textAlign: 'center',
-    marginTop: 80,
-    marginBottom: 70,
-    // marginBottom: 30, // <-- new line
+    marginTop: 60,
+    marginBottom: 50,
   },
   formContainer: {
     justifyContent: 'center',
     alignItems: 'center',
+    paddingBottom: 30,
   },
   card: {
     width: '95%',
     maxWidth: 400,
-    backgroundColor: '#fff',
+    backgroundColor: '#F5F5F5',
     borderRadius: 30,
     padding: 20,
     elevation: 5,
+    marginBottom: 40,
   },
   title: {
     fontSize: 22,
@@ -196,71 +242,73 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     alignItems: 'center',
-    marginBottom: 10,
-    // marginTop: 0,
+    marginBottom: 20,
   },
   rememberMe: {
     flexDirection: 'row',
     alignItems: 'center',
-    // marginTop: 0,
+    flex: 1,
   },
   rememberText: {
-    fontSize: 12,
-    marginLeft: 5,
+    marginLeft: 8,
     color: '#333',
+    fontSize: 14,
   },
   forgotText: {
-    fontSize: 12,
-    color: '#00BFFF',
+    color: '#253347',
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  errorContainer: {
+    backgroundColor: '#fee',
+    borderColor: '#f55',
+    borderWidth: 1,
+    borderRadius: 8,
+    padding: 10,
+    marginBottom: 15,
+  },
+  errorText: {
+    color: '#c00',
+    fontSize: 14,
   },
   button: {
-    width: '100%',
-    height: 40,
     backgroundColor: '#253347',
-    alignItems: 'center',
-    justifyContent: 'center',
+    paddingVertical: 12,
     borderRadius: 35,
-    marginBottom: 10,
+    alignItems: 'center',
+    marginBottom: 15,
   },
   buttonText: {
     color: '#fff',
     fontSize: 16,
+    fontWeight: 'bold',
   },
   orText: {
     textAlign: 'center',
-    marginVertical: 15,
-    color: '#555',
+    color: '#999',
+    marginBottom: 10,
   },
-
   socialRow: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     marginBottom: 20,
   },
-
   socialBox: {
-    width: 80,
-    height: 50,
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: '#ddd',
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginHorizontal: 15,
+    padding: 10,
   },
-
   signupRow: {
     flexDirection: 'row',
     justifyContent: 'center',
+    marginTop: 10,
   },
-
   signupText: {
     color: '#333',
   },
-
   signupLink: {
-    color: '#00BFFF',
+    color: '#253347',
     fontWeight: 'bold',
   },
 });
